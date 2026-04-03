@@ -85,7 +85,7 @@
     },
     {
       "id": "Xref",
-      "code_hash": "14e034a184e7ad04a92edbb76efd76eb",
+      "code_hash": "26b982b3d948e57159c9c9ced7973286",
       "outputs": [
         {
           "type": "data",
@@ -98,12 +98,12 @@
     },
     {
       "id": "SFPL",
-      "code_hash": "06a943c59f33a34bb5924aaf72cd2995",
+      "code_hash": "27d983767385212ab3f1e558e090d32c",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='9be35461-47c4-dd94-247f-a76a9e61357b'><marimo-text data-initial-value='&quot;&quot;' data-label='null' data-placeholder='&quot;Search Pok\u00e9mon...&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Pokedex Compatibility Chart.</span>\n<span class=\"paragraph\">Add a Pokemon to your party and game icons will highlight telling you which games' pokedex are compatible with your team!</span></span>"
           }
         }
       ],
@@ -111,12 +111,12 @@
     },
     {
       "id": "BYtC",
-      "code_hash": "3cce58acf94ada7d5335525fe8b8005e",
+      "code_hash": "06a943c59f33a34bb5924aaf72cd2995",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='BYtC-0' random-id='d3ddf3be-4bed-ef26-9184-862cf052e4e0'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Add Pokemon&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='2fad3d75-c279-4520-8d82-87e2159d597a'><marimo-text data-initial-value='&quot;&quot;' data-label='null' data-placeholder='&quot;Search Pok\u00e9mon...&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element>"
           }
         }
       ],
@@ -124,12 +124,25 @@
     },
     {
       "id": "RGSE",
+      "code_hash": "3cce58acf94ada7d5335525fe8b8005e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='RGSE-0' random-id='fc948384-43ec-90cf-2e16-2c93d3318091'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Add Pokemon&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
       "code_hash": "0440c5e780125ccba9074309123d3423",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">skarmory</div><marimo-ui-element object-id='RGSE-0' random-id='edefbb43-ea16-d0a2-f58b-23894d615f09'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">jirachi</div><marimo-ui-element object-id='RGSE-1' random-id='5e9ce640-93eb-ecb9-40ac-b950108cb19b'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">torchic</div><marimo-ui-element object-id='RGSE-2' random-id='a845cb62-ed95-365d-2922-7ce860cdbe96'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">snivy</div><marimo-ui-element object-id='RGSE-3' random-id='4d2097ea-de39-6dcb-9bde-497efcca5e5f'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div></div>"
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">Pikachu</div><marimo-ui-element object-id='Kclp-0' random-id='ce4cfeb5-f5db-728f-6db6-5682b25edb13'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">Staraptor</div><marimo-ui-element object-id='Kclp-1' random-id='faa77073-779e-1637-98e2-4d0e120322c8'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">Articuno</div><marimo-ui-element object-id='Kclp-2' random-id='df35585e-2ab6-f49b-e95e-6e777307f27c'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div></div>"
           }
         }
       ],
@@ -137,12 +150,25 @@
     },
     {
       "id": "emfo",
-      "code_hash": "bb19fc533cc40d67c5ab79e261f8cf65",
+      "code_hash": "ef39594521fe9b4b426781efa7afb452",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<div style=\"display:flex;flex-wrap:wrap;gap:4px;\"><img src=\"public/red.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/blu.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/yel.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/gol.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sil.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/cry.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/rub.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sap.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eme.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/fir.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/dia.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/hea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sou.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bla.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/whi.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/bl2.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/wh2.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/ome.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/alp.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/x.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/y.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/usu.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/umo.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/bdi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/spe.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sca.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/vio.png\" style=\"height:50px;width:50px;object-fit:contain;\" /></div>"
+            "text/html": "<marimo-ui-element object-id='emfo-0' random-id='cc1e17c7-a2a9-4783-2115-33cccca9d713'><marimo-switch data-initial-value='false' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Large icons&lt;/span&gt;&lt;/span&gt;&quot;' data-disabled='false'></marimo-switch></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "1c5619f52836c8932380d9d904565554",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style=\"display:flex;flex-wrap:wrap;gap:4px;\"><img src=\"public/red.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/blu.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/yel.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/gol.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sil.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/cry.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/rub.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sap.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eme.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/fir.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lea.png\" style=\"height:100px;width:100px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/dia.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/pea.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/pla.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/hea.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/sou.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/bla.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/whi.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/bl2.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/wh2.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/ome.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/alp.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/x.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/y.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/usu.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/umo.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/bdi.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/spe.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/sca.png\" style=\"height:100px;width:100px;object-fit:contain;\" /><img src=\"public/vio.png\" style=\"height:100px;width:100px;object-fit:contain;\" /></div>"
           }
         }
       ],

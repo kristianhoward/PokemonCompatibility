@@ -113,12 +113,12 @@ def sprite_url(pokemon_id):
 
 @app.cell(hide_code=True)
 def _(get_abv_games, mo):
-    def render_game_icons(shared_abvs: set[str]) -> mo.Html:
+    def render_game_icons(shared_abvs: set[str], size: int = 50) -> mo.Html:
         def style(abv):
             return "" if abv in shared_abvs else "filter:brightness(0.3);"
         return mo.Html(
             '<div style="display:flex;flex-wrap:wrap;gap:4px;">'
-            + "".join(f'<img src="public/{abv}.png" style="height:50px;width:50px;object-fit:contain;{style(abv)}" />'
+            + "".join(f'<img src="public/{abv}.png" style="height:{size}px;width:{size}px;object-fit:contain;{style(abv)}" />'
                   for abv in get_abv_games()
         )
             + '</div>'
@@ -126,6 +126,16 @@ def _(get_abv_games, mo):
 
 
     return (render_game_icons,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Pokedex Compatibility Chart.
+
+    Add a Pokemon to your party and game icons will highlight telling you which games' pokedex are compatible with your team!
+    """)
+    return
 
 
 @app.cell(hide_code=True)
@@ -163,11 +173,19 @@ def _(get_pokemon_id, mo, set_user_party, user_party):
 
 
 @app.cell(hide_code=True)
-def _(get_shared_games, render_game_icons, user_party):
+def _(mo):
+    icon_size_toggle = mo.ui.switch(label="Large icons")
+    icon_size_toggle
+    return (icon_size_toggle,)
+
+
+@app.cell(hide_code=True)
+def _(get_shared_games, icon_size_toggle, render_game_icons, user_party):
     _abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe'}
     _shared = get_shared_games(user_party())
     _shared_abvs = {_abbrevs.get(g, g[:3]) for g in _shared}
-    render_game_icons(_shared_abvs)
+    _size = 100 if icon_size_toggle.value else 50
+    render_game_icons(_shared_abvs, _size)
     return
 
 
