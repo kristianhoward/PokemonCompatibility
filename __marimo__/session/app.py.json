@@ -1,0 +1,152 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.21.1",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "06487ada1e4ab9c8f0322a15cdbb8ec5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "5c19a4e643ca82f20602dcba0cff7b5c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "879dd8499cdda7515f61feff6af7371d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "5041945716d30e21586041287e865371",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "e99f5159d1270bd66f0185b8f98cbce0",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "1f3e44a75e5ab2a12ccde61c30ef1946",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "14e034a184e7ad04a92edbb76efd76eb",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "06a943c59f33a34bb5924aaf72cd2995",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='9be35461-47c4-dd94-247f-a76a9e61357b'><marimo-text data-initial-value='&quot;&quot;' data-label='null' data-placeholder='&quot;Search Pok\u00e9mon...&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "3cce58acf94ada7d5335525fe8b8005e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='BYtC-0' random-id='d3ddf3be-4bed-ef26-9184-862cf052e4e0'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Add Pokemon&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "0440c5e780125ccba9074309123d3423",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">skarmory</div><marimo-ui-element object-id='RGSE-0' random-id='edefbb43-ea16-d0a2-f58b-23894d615f09'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">jirachi</div><marimo-ui-element object-id='RGSE-1' random-id='5e9ce640-93eb-ecb9-40ac-b950108cb19b'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">torchic</div><marimo-ui-element object-id='RGSE-2' random-id='a845cb62-ed95-365d-2922-7ce860cdbe96'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">snivy</div><marimo-ui-element object-id='RGSE-3' random-id='4d2097ea-de39-6dcb-9bde-497efcca5e5f'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "bb19fc533cc40d67c5ab79e261f8cf65",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style=\"display:flex;flex-wrap:wrap;gap:4px;\"><img src=\"public/red.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/blu.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/yel.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/gol.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sil.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/cry.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/rub.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sap.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eme.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/fir.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/dia.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/hea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sou.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bla.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/whi.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/bl2.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/wh2.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/ome.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/alp.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/x.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/y.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/usu.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/umo.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/bdi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/spe.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sca.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/vio.png\" style=\"height:50px;width:50px;object-fit:contain;\" /></div>"
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}

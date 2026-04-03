@@ -1,0 +1,9 @@
+[project]
+name = "pokemoncompatability"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "marimo>=0.21.1",
+    "pokebase>=1.4.1",
+]

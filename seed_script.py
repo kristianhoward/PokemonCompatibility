@@ -1,0 +1,97 @@
+import sqlite3
+import time
+
+import pokebase as pb
+from pokebase import cache
+
+cache.set_cache('./pokebase_cache')  # must be first
+
+conn = sqlite3.connect('pokedex.db')
+
+all_pokemon = pb.APIResourceList('pokemon')  # lightweight, just names
+
+SPRITE_GAME_MAP = [
+    ('generation_i',    'red_blue',                        ['red', 'blue']),
+    ('generation_i',    'yellow',                          ['yellow']),
+    ('generation_ii',   'crystal',                         ['crystal']),
+    ('generation_ii',   'gold',                            ['gold']),
+    ('generation_ii',   'silver',                          ['silver']),
+    ('generation_iii',  'emerald',                         ['emerald']),
+    ('generation_iii',  'firered_leafgreen',               ['firered', 'leafgreen']),
+    ('generation_iii',  'ruby_sapphire',                   ['ruby', 'sapphire']),
+    ('generation_iv',   'diamond_pearl',                   ['diamond', 'pearl']),
+    ('generation_iv',   'heartgold_soulsilver',            ['heartgold', 'soulsilver']),
+    ('generation_iv',   'platinum',                        ['platinum']),
+    ('generation_v',    'black_white',                     ['black', 'white']),
+    ('generation_vi',   'omegaruby_alphasapphire',         ['omegaruby', 'alphasapphire']),
+    ('generation_vi',   'x_y',                             ['x', 'y']),
+    ('generation_vii',  'sun_moon',                        ['sun', 'moon']),
+    ('generation_vii',  'ultra_sun_ultra_moon',            ['ultra-sun', 'ultra-moon']),
+    ('generation_viii', 'brilliant_diamond_shining_pearl', ['brilliant-diamond', 'shining-pearl']),
+    ('generation_ix',   'scarlet_violet',                  ['scarlet', 'violet']),
+]
+
+
+def seed_games_from_sprites(mon, conn):
+    versions = mon.sprites.versions
+    for gen_attr, game_attr, game_names in SPRITE_GAME_MAP:
+        gen = getattr(versions, gen_attr, None)
+        if gen is None:
+            continue
+        sprite_entry = getattr(gen, game_attr, None)
+        if sprite_entry is None:
+            continue
+        if getattr(sprite_entry, 'front_default', None) is None:
+            continue
+        for game in game_names:
+            conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
+            game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
+            conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+
+
+def query():
+    try:
+        for i, entry in enumerate(all_pokemon):
+            print(f"Progress {i} / 1,025")
+            # Skip already-seeded entries
+            #exists = conn.execute('SELECT 1 FROM pokemon WHERE name=?', (entry["name"],)).fetchone()
+            #if exists:
+            #    continue
+
+            try:
+                mon = pb.pokemon(entry["name"])
+            except Exception as e:
+                print(f"Socket error on {entry["name"]}, retrying in 5s: {e}")
+                time.sleep(5)
+                try:
+                    mon = pb.pokemon(entry["name"])  # one retry
+                except Exception as e2:
+                    print(f"Socket error on {entry["name"]}, retrying in 30s: {e2}")
+                    time.sleep(30)
+                    try:
+                        mon = pb.pokemon(entry["name"])  # one retry
+                    except Exception as e3:
+                        print(f"Giving up on {entry["name"]}: {e3}")
+                        continue
+
+            conn.execute('INSERT OR IGNORE INTO pokemon VALUES (?,?)', (mon.id, mon.name))
+
+            for gi in mon.game_indices:
+                game = gi.version.name
+                conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
+                game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
+                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+
+            seed_games_from_sprites(mon, conn)
+
+            if i % 100 == 0:
+                conn.commit()
+
+            time.sleep(0.1)  # just 100ms — purely courtesy, not a hard requirement
+
+        conn.commit()
+    finally:
+        conn.close()
+
+
+query()
