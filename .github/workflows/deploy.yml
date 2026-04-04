@@ -26,6 +26,7 @@ jobs:
               run: |
                 marimo export html-wasm app.py -o site --mode run
                 cp pokedex.db site/
+                cp -r public site/
 
             - name: 📦 Upload Pages Artifact
               uses: actions/upload-pages-artifact@v3
