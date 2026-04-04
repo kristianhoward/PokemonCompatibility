@@ -56,8 +56,9 @@ VERSION_GROUP_GAME_MAP = {
 }
 
 
-def seed_games_from_moves(mon, conn):
+def seed_games_from_moves(mon, conn) -> set[str]:
     seen = set()
+    seeded_games = set()
     for move in mon.moves:
         for vgd in move.version_group_details:
             vg_name = vgd.version_group.name
@@ -68,11 +69,15 @@ def seed_games_from_moves(mon, conn):
                 conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
                 game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
                 conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+                seeded_games.add(game)
+    return seeded_games
 
 
-def seed_games_from_sprites(mon, conn):
+def seed_games_from_sprites(mon, conn, already_seeded: set[str]):
     versions = mon.sprites.versions
     for gen_attr, game_attr, game_names in SPRITE_GAME_MAP:
+        if all(g in already_seeded for g in game_names):
+            continue  # move data already covers this; skip to avoid sprite fallback false positives
         gen = getattr(versions, gen_attr, None)
         if gen is None:
             continue
@@ -120,8 +125,8 @@ def query():
                 game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
                 conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
 
-            seed_games_from_sprites(mon, conn)
-            seed_games_from_moves(mon, conn)
+            seeded = seed_games_from_moves(mon, conn)
+            seed_games_from_sprites(mon, conn, seeded)
 
             if i % 100 == 0:
                 conn.commit()

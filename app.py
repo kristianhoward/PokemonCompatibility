@@ -6,12 +6,11 @@ app = marimo.App(width="medium")
 
 @app.cell
 def _():
-    import pokebase as pkmn
     import marimo as mo
     import os
     import sqlite3
 
-    return mo, pkmn, sqlite3
+    return mo, sqlite3
 
 
 @app.cell
@@ -130,8 +129,7 @@ def _(get_conn, set_user_party, sqlite3, user_party):
 
 
 @app.cell
-def _(mo, pkmn):
-    all_names = [p for p in pkmn.APIResourceList('pokemon')]
+def _(mo):
     search = mo.ui.text(placeholder="Search Pokémon...", label="")
     return (search,)
 

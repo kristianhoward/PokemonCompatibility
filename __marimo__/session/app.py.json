@@ -7,7 +7,7 @@
   "cells": [
     {
       "id": "Hbol",
-      "code_hash": "06487ada1e4ab9c8f0322a15cdbb8ec5",
+      "code_hash": "9d9e2331d3d69a2c8083bf2e372590f3",
       "outputs": [
         {
           "type": "data",
@@ -59,7 +59,7 @@
     },
     {
       "id": "lEQa",
-      "code_hash": "e99f5159d1270bd66f0185b8f98cbce0",
+      "code_hash": "240a9b5252378c9cc5a88a96367cdddc",
       "outputs": [
         {
           "type": "data",
@@ -116,7 +116,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='f6c86440-63b5-138b-0e13-c67f50a2cb91'><marimo-text data-initial-value='&quot;&quot;' data-label='null' data-placeholder='&quot;Search Pok\u00e9mon...&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='acbca9c5-e237-9ded-ebc7-a5d6f509fb90'><marimo-text data-initial-value='&quot;&quot;' data-label='null' data-placeholder='&quot;Search Pok\u00e9mon...&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element>"
           }
         }
       ],
@@ -129,7 +129,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='RGSE-0' random-id='42e20837-064a-a51e-0e97-86665a998b1f'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Add Pokemon&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='RGSE-0' random-id='47a7a65d-7b34-0a0a-c3d2-bb493a67b276'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Add Pokemon&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element>"
           }
         }
       ],
@@ -142,7 +142,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;gap: 0.5rem'><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/722.png\" style=\"width:96px;height:96px;object-fit:contain;\" /><div style=\"text-align:center;font-size:0.8em\">rowlet</div><marimo-ui-element object-id='Kclp-0' random-id='57aa05ad-68bb-a814-dffe-adb73f217d20'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\u2715&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div></div>"
+            "text/html": "<p>Add a Pokemon to see game compatibility</p>"
           }
         }
       ],
@@ -155,7 +155,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='emfo-0' random-id='98fdff82-45b1-9bf8-01ee-6465314c70f1'><marimo-switch data-initial-value='false' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Large icons&lt;/span&gt;&lt;/span&gt;&quot;' data-disabled='false'></marimo-switch></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='emfo-0' random-id='b18acd76-6920-5798-875e-e6d2e0389e7d'><marimo-switch data-initial-value='false' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Large icons&lt;/span&gt;&lt;/span&gt;&quot;' data-disabled='false'></marimo-switch></marimo-ui-element>"
           }
         }
       ],
@@ -168,7 +168,7 @@
         {
           "type": "data",
           "data": {
-            "text/html": "<div style=\"display:flex;flex-wrap:wrap;gap:4px;\"><img src=\"public/red.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/blu.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/yel.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/gol.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sil.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/cry.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/rub.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sap.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eme.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/fir.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/dia.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/hea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sou.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/whi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bl2.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/wh2.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/x.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/y.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/ome.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/alp.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sun.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/moo.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/usu.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/umo.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/swo.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/shi.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/pik.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eev.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bdi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/spe.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/arc.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/sca.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/vio.png\" style=\"height:50px;width:50px;object-fit:contain;\" /><img src=\"public/lza.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /></div>"
+            "text/html": "<div style=\"display:flex;flex-wrap:wrap;gap:4px;\"><img src=\"public/red.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/blu.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/yel.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/gol.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sil.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/cry.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/rub.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sap.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eme.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/fir.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/dia.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/hea.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sou.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bla.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/whi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bl2.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/wh2.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/x.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/y.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/ome.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/alp.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sun.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/moo.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/usu.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/umo.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/swo.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/shi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/pik.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/eev.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/bdi.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/spe.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/arc.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/sca.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/vio.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /><img src=\"public/lza.png\" style=\"height:50px;width:50px;object-fit:contain;filter:brightness(0.3);\" /></div>"
           }
         }
       ],

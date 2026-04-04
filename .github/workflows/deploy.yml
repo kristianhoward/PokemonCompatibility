@@ -3,7 +3,7 @@ name: Publish Marimo Notebook to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
     build:
@@ -25,6 +25,7 @@ jobs:
             - name: 📄 Export notebook
               run: |
                 marimo export html-wasm app.py -o site --mode run
+                cp pokedex.db site/
 
             - name: 📦 Upload Pages Artifact
               uses: actions/upload-pages-artifact@v3
