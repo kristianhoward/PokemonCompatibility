@@ -84,13 +84,43 @@ def _(get_conn, set_user_party, sqlite3, user_party):
         return [r['name'] for r in rows]
 
     def get_abv_games() -> list[str]:
-        games = get_all_games()
-        abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe'}
-        return [abbrevs.get(g, g[:3]) for g in games]
+        release_order = [
+            'red', 'blue', 'yellow',
+            'gold', 'silver', 'crystal',
+            'ruby', 'sapphire', 'emerald', 'firered', 'leafgreen',
+            'diamond', 'pearl', 'platinum', 'heartgold', 'soulsilver',
+            'black', 'white', 'black-2', 'white-2',
+            'x', 'y', 'omega-ruby', 'alpha-sapphire',
+            'sun', 'moon', 'ultra-sun', 'ultra-moon',
+            'sword', 'shield', 'lets-go-pikachu', 'lets-go-eevee',
+            'brilliant-diamond', 'shining-pearl', 'legends-arceus',
+            'scarlet', 'violet', 'legends-za'
+        ]
+        abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe', 'lets-go-pikachu': 'pik', 'lets-go-eevee': 'eev', 'omega-ruby': 'ome', 'alpha-sapphire': 'alp', 'legends-arceus': 'arc', 'legends-za': 'lza'}
+        games = set(get_all_games())
+        return [abbrevs.get(g, g[:3]) for g in release_order if g in games]
+
+
+    FORMS = {
+        "mr mime": ["mr-mime"],
+        "mr. mime": ["mr-mime"],
+        "shaymin": ["shaymin-land", "shaymin-sky"],
+        "basculin": ["basculin-red-striped", "basculin-blue-striped", "basculin-white-striped"],
+        "basculegion": ["basculegion-male", "basculegion-female"],
+        "tornadus": ["tornadus-incarnate", "tornadus-therian"],
+        "thundurus": ["thundurus-incarnate", "thundurus-therian"],
+        "landorus": ["landorus-incarnate", "landorus-therian"],
+        "enamorus": ["enamorus-incarnate", "enamorus-therian"],
+        "giratina": ["giratina-altered", "giratina-origin"]
+    }
 
     def add_pokemon(name: str) -> None:
-        if name not in user_party():
-            set_user_party(user_party() + [name])
+        pkmn_name = name
+        if pkmn_name in FORMS:
+            pkmn_name = FORMS[pkmn_name][0]
+    
+        if pkmn_name not in user_party():
+            set_user_party(user_party() + [pkmn_name])
 
     def remove_pokemon(name: str) -> None:
         set_user_party([p for p in user_party() if p != name])
@@ -181,7 +211,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(get_shared_games, icon_size_toggle, render_game_icons, user_party):
-    _abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe'}
+    _abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe', 'lets-go-pikachu': 'pik', 'lets-go-eevee': 'eev', 'legends-arceus': 'arc', 'legends-za': 'lza'}
     _shared = get_shared_games(user_party())
     _shared_abvs = {_abbrevs.get(g, g[:3]) for g in _shared}
     _size = 100 if icon_size_toggle.value else 50

@@ -23,13 +23,51 @@ SPRITE_GAME_MAP = [
     ('generation_iv',   'heartgold_soulsilver',            ['heartgold', 'soulsilver']),
     ('generation_iv',   'platinum',                        ['platinum']),
     ('generation_v',    'black_white',                     ['black', 'white']),
-    ('generation_vi',   'omegaruby_alphasapphire',         ['omegaruby', 'alphasapphire']),
+    ('generation_vi',   'omegaruby_alphasapphire',         ['omega-ruby', 'alpha-sapphire']),
     ('generation_vi',   'x_y',                             ['x', 'y']),
     ('generation_vii',  'sun_moon',                        ['sun', 'moon']),
     ('generation_vii',  'ultra_sun_ultra_moon',            ['ultra-sun', 'ultra-moon']),
     ('generation_viii', 'brilliant_diamond_shining_pearl', ['brilliant-diamond', 'shining-pearl']),
     ('generation_ix',   'scarlet_violet',                  ['scarlet', 'violet']),
 ]
+
+
+VERSION_GROUP_GAME_MAP = {
+    'red-blue':                            ['red', 'blue'],
+    'yellow':                              ['yellow'],
+    'gold-silver':                         ['gold', 'silver'],
+    'crystal':                             ['crystal'],
+    'ruby-sapphire':                       ['ruby', 'sapphire'],
+    'emerald':                             ['emerald'],
+    'firered-leafgreen':                   ['firered', 'leafgreen'],
+    'diamond-pearl':                       ['diamond', 'pearl'],
+    'platinum':                            ['platinum'],
+    'heartgold-soulsilver':                ['heartgold', 'soulsilver'],
+    'black-white':                         ['black', 'white'],
+    'black-2-white-2':                     ['black-2', 'white-2'],
+    'x-y':                                 ['x', 'y'],
+    'omega-ruby-alpha-sapphire':           ['omega-ruby', 'alpha-sapphire'],
+    'sun-moon':                            ['sun', 'moon'],
+    'ultra-sun-ultra-moon':                ['ultra-sun', 'ultra-moon'],
+    'lets-go-pikachu-lets-go-eevee':       ['lets-go-pikachu', 'lets-go-eevee'],
+    'sword-shield':                        ['sword', 'shield'],
+    'brilliant-diamond-and-shining-pearl': ['brilliant-diamond', 'shining-pearl'],
+    'scarlet-violet':                      ['scarlet', 'violet'],
+}
+
+
+def seed_games_from_moves(mon, conn):
+    seen = set()
+    for move in mon.moves:
+        for vgd in move.version_group_details:
+            vg_name = vgd.version_group.name
+            if vg_name in seen or vg_name not in VERSION_GROUP_GAME_MAP:
+                continue
+            seen.add(vg_name)
+            for game in VERSION_GROUP_GAME_MAP[vg_name]:
+                conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
+                game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
+                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
 
 
 def seed_games_from_sprites(mon, conn):
@@ -83,6 +121,7 @@ def query():
                 conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
 
             seed_games_from_sprites(mon, conn)
+            seed_games_from_moves(mon, conn)
 
             if i % 100 == 0:
                 conn.commit()
