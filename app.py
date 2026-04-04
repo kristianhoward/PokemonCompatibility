@@ -10,7 +10,7 @@ def _():
     import os
     import sqlite3
 
-    return mo, sqlite3
+    return mo, os, sqlite3
 
 
 @app.cell
@@ -20,8 +20,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(sqlite3):
-    import os
+def _(os, sqlite3):
     import sys
 
     if sys.platform == 'emscripten' and not os.path.exists('pokedex.db'):
