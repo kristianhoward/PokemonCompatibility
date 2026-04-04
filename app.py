@@ -29,8 +29,10 @@ def _(os, sqlite3):
         _req.open('GET', 'pokedex.db', False)  # False = synchronous (allowed in Web Workers)
         _req.responseType = 'arraybuffer'
         _req.send(None)
+        if _req.status != 200:
+            raise RuntimeError(f"Failed to fetch pokedex.db: HTTP {_req.status}")
         with open('pokedex.db', 'wb') as _f:
-            _f.write(_req.response.to_py().tobytes())
+            _f.write(js.Uint8Array.new(_req.response).to_py().tobytes())
 
     def get_conn():
         conn = sqlite3.connect('pokedex.db')
