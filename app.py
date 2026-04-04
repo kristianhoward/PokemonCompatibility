@@ -20,18 +20,16 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(sqlite3):
+async def _(sqlite3):
     import os
     import sys
 
     if sys.platform == 'emscripten' and not os.path.exists('pokedex.db'):
-        import js
-        _xhr = js.XMLHttpRequest.new()
-        _xhr.open('GET', 'pokedex.db', False)
-        _xhr.responseType = 'arraybuffer'
-        _xhr.send(None)
+        from pyodide.http import pyfetch
+        _response = await pyfetch('pokedex.db')
+        _data = await _response.bytes()
         with open('pokedex.db', 'wb') as _f:
-            _f.write(_xhr.response.to_bytes())
+            _f.write(_data)
 
     def get_conn():
         conn = sqlite3.connect('pokedex.db')
