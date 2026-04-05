@@ -130,7 +130,7 @@ def _(get_conn, set_user_party, sqlite3, user_party):
         pkmn_name = name
         if pkmn_name in FORMS:
             pkmn_name = FORMS[pkmn_name][0]
-    
+
         if pkmn_name not in user_party():
             set_user_party(user_party() + [pkmn_name])
 
@@ -172,9 +172,22 @@ def _(get_abv_games, mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Pokedex Compatibility Chart.
+    # Pokédex Compatibility Chart
 
-    Add a Pokemon to your party and game icons will highlight telling you which games' pokedex are compatible with your team!
+    Add a **Pokémon** to your party and game icons will highlight showing which games' Pokédex are compatible with your
+      team!
+
+      **Searching for special forms?** Use dashes to separate the name and form:
+
+      | Form type | Example |
+      |---|---|
+      | Mega | `charizard-mega-x`, `charizard-mega-y` |
+      | Regional | `darmanitan-galar-standard`, `rapidash-galar` |
+      | Appliance / Rotom | `rotom-wash`, `rotom-heat` |
+      | G-Max | `urshifu-single-strike-gmax` |
+      | Alolan / Hisuian | `vulpix-alola`, `growlithe-hisui` |
+
+      When in doubt, try the base name first — most Pokémon don't need a suffix.
     """)
     return
 
@@ -195,7 +208,7 @@ def _(add_pokemon, mo, search):
 @app.cell(hide_code=True)
 def _(get_pokemon_id, mo, set_user_party, user_party):
     if not user_party():
-        _party_ui = mo.Html("<p>Add a Pokemon to see game compatibility</p>")
+        _party_ui = mo.Html("<p>Add a Pokémon to see game compatibility</p>")
     else:
         _cards = []
         for _name in user_party():
@@ -205,7 +218,7 @@ def _(get_pokemon_id, mo, set_user_party, user_party):
             )
             _cards.append(mo.vstack([
                 mo.Html(f'<img src="{sprite_url(get_pokemon_id(_name))}" style="width:96px;height:96px;object-fit:contain;" />'),
-                mo.Html(f'<div style="text-align:center;font-size:0.8em">{_name}</div>'),
+                mo.Html(f'<div style="text-align:center;font-size:0.8em">{_name.capitalize()}</div>'),
                 _btn
             ], align="center"))
         _party_ui = mo.hstack(_cards, justify="start")
@@ -227,6 +240,15 @@ def _(get_shared_games, icon_size_toggle, render_game_icons, user_party):
     _shared_abvs = {_abbrevs.get(g, g[:3]) for g in _shared}
     _size = 100 if icon_size_toggle.value else 50
     render_game_icons(_shared_abvs, _size)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    © 2026 — All Pokémon names, characters, and related media are the intellectual property of Nintendo, Game Freak, and
+       The Pokémon Company. This site is an unofficial fan tool and is not affiliated with or endorsed by any of the above.
+    """)
     return
 
 
