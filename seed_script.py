@@ -67,8 +67,10 @@ def seed_games_from_moves(mon, conn) -> set[str]:
             seen.add(vg_name)
             for game in VERSION_GROUP_GAME_MAP[vg_name]:
                 conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
-                game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
-                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+                row = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()
+                if row is None:
+                    continue
+                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, row[0]))
                 seeded_games.add(game)
     return seeded_games
 
@@ -88,8 +90,10 @@ def seed_games_from_sprites(mon, conn, already_seeded: set[str]):
             continue
         for game in game_names:
             conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
-            game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
-            conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+            row = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()
+            if row is None:
+                continue
+            conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, row[0]))
 
 
 def query():
@@ -122,8 +126,10 @@ def query():
             for gi in mon.game_indices:
                 game = gi.version.name
                 conn.execute('INSERT OR IGNORE INTO games (name) VALUES (?)', (game,))
-                game_id = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()[0]
-                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, game_id))
+                row = conn.execute('SELECT id FROM games WHERE name=?', (game,)).fetchone()
+                if row is None:
+                    continue
+                conn.execute('INSERT OR IGNORE INTO pokemon_games VALUES (?,?)', (mon.id, row[0]))
 
             seeded = seed_games_from_moves(mon, conn)
             seed_games_from_sprites(mon, conn, seeded)
