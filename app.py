@@ -5,7 +5,7 @@
 
 import marimo
 
-__generated_with = "0.21.1"
+__generated_with = "0.22.4"
 app = marimo.App(width="medium")
 
 
@@ -163,12 +163,20 @@ def _(get_conn, set_user_party, sqlite3, user_party):
         set_user_party([p for p in user_party() if p != name])
 
 
-    return add_pokemon, get_abv_games, get_party_availability, get_pokemon_id, get_shared_games
+    return (
+        add_pokemon,
+        get_abv_games,
+        get_party_availability,
+        get_pokemon_id,
+        get_shared_games,
+    )
 
 
 @app.cell
-def _(mo):
-    search = mo.ui.text(placeholder="Search Pokémon...", label="")
+def _(get_conn, mo):
+    _rows = get_conn().execute('SELECT name FROM pokemon ORDER BY id').fetchall()
+    _names = {r[0].capitalize(): r[0] for r in _rows}
+    search = mo.ui.dropdown(options=_names, label="", searchable=True)
     return (search,)
 
 
@@ -254,17 +262,8 @@ def _(mo):
     Add a **Pokémon** to your party and game icons will highlight showing which games' Pokédex are compatible with your
       team!
 
-      **Searching for special forms?** Use dashes to separate the name and form:
-
-      | Form type | Example |
-      |---|---|
-      | Mega | `charizard-mega-x`, `charizard-mega-y` |
-      | Regional | `darmanitan-galar-standard`, `rapidash-galar` |
-      | Appliance / Rotom | `rotom-wash`, `rotom-heat` |
-      | G-Max | `urshifu-single-strike-gmax` |
-      | Alolan / Hisuian | `vulpix-alola`, `growlithe-hisui` |
-
-      When in doubt, try the base name first — most Pokémon don't need a suffix.
+      Search by typing any part of the name — regional forms, megas, and variants are all included.
+      For example, type `galar` to see all Galarian forms, or `mega` for all Mega Evolutions.
     """)
     return
 
@@ -277,7 +276,7 @@ def _(search):
 
 @app.cell(hide_code=True)
 def _(add_pokemon, mo, search):
-    run_button = mo.ui.button(on_change=lambda _: add_pokemon(search.value), label="Add Pokemon")
+    run_button = mo.ui.button(on_change=lambda _: add_pokemon(search.value) if search.value else None, label="Add Pokemon")
     run_button
     return
 
@@ -311,7 +310,13 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(get_party_availability, get_shared_games, icon_size_toggle, render_game_icons, user_party):
+def _(
+    get_party_availability,
+    get_shared_games,
+    icon_size_toggle,
+    render_game_icons,
+    user_party,
+):
     _abbrevs = {'black-2': 'bl2', 'white-2': 'wh2', 'ultra-moon': 'umo', 'ultra-sun': 'usu', 'brilliant-diamond': 'bdi', 'shining-pearl': 'spe', 'lets-go-pikachu': 'pik', 'lets-go-eevee': 'eev', 'omega-ruby': 'ome', 'alpha-sapphire': 'alp', 'legends-arceus': 'arc', 'legends-za': 'lza'}
     _shared = get_shared_games(user_party())
     _shared_abvs = {_abbrevs.get(g, g[:3]) for g in _shared}
@@ -345,6 +350,14 @@ def _(mo, user_party):
       <span><span style="color:#f44336">●</span> Transfer / trade only</span>
     </div>
     """) if user_party() else mo.Html("")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Select a game:
+    """)
     return
 
 
