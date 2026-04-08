@@ -221,6 +221,13 @@ def availability_tier(code):
                 break
         else:
             i += 1  # skip unrecognised character
+    # If 'E' (evolution) appears alongside other tokens, exclude it — it merely
+    # echoes pre-evolution availability, which is already captured by those tokens.
+    # e.g. 'EvE' → Ev=3 + E=1 → without filter: min=1 (wrong); with filter: 3 (correct).
+    if len(tiers) > 1:
+        non_e_tiers = [t for t in tiers if t != token_tier['E']]
+        if non_e_tiers:
+            tiers = non_e_tiers
     return min(tiers) if tiers else None
 
 

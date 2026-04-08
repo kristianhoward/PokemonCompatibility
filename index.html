@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex Compatibility Chart</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js"></script>
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --surface: #181825;
+      --surface2: #313244;
+      --text: #cdd6f4;
+      --muted: #6c7086;
+      --border: #313244;
+      --accent: #89b4fa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+    h1 { font-size: 1.6em; margin-bottom: 8px; color: var(--accent); }
+    p { color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    code { background: var(--surface2); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+    /* Search */
+    .search-row { display: flex; gap: 8px; margin-bottom: 16px; position: relative; }
+    #search-input {
+      flex: 1;
+      padding: 8px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 1em;
+      outline: none;
+    }
+    #search-input:focus { border-color: var(--accent); }
+    #add-btn {
+      padding: 8px 16px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    #add-btn:hover { opacity: 0.85; }
+
+    /* Dropdown */
+    #dropdown {
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0;
+      right: 90px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .dropdown-item {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 0.9em;
+      text-transform: capitalize;
+    }
+    .dropdown-item:hover, .dropdown-item.active { background: var(--surface2); }
+
+    /* Party */
+    #party {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      min-height: 40px;
+      align-items: flex-start;
+    }
+    .pokemon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 8px;
+      min-width: 80px;
+    }
+    .pokemon-card img { width: 72px; height: 72px; object-fit: contain; image-rendering: pixelated; }
+    .pokemon-card .pkmn-name { font-size: 0.75em; text-align: center; }
+    .remove-btn {
+      background: none;
+      border: 1px solid var(--muted);
+      color: var(--muted);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75em;
+      padding: 2px 8px;
+    }
+    .remove-btn:hover { border-color: #f44336; color: #f44336; }
+
+    /* Controls */
+    .controls-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .toggle-label {
+      font-size: 0.85em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-label input { cursor: pointer; }
+
+    /* Game icons */
+    #game-icons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    #game-icons img { object-fit: contain; cursor: pointer; transition: filter 0.15s, box-shadow 0.15s; }
+
+    /* Legend */
+    #legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.82em;
+      margin-bottom: 20px;
+      opacity: 0.65;
+    }
+
+    /* Game selector */
+    #game-select-row { margin-bottom: 16px; }
+    #game-select {
+      padding: 8px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.95em;
+      min-width: 200px;
+      cursor: pointer;
+      outline: none;
+    }
+    #game-select:focus { border-color: var(--accent); }
+
+    /* Detail table */
+    #detail-table {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--surface);
+    }
+    .detail-header img { height: 38px; object-fit: contain; }
+    .detail-header span { font-size: 1.1em; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--surface);
+      padding: 6px 10px;
+      text-align: left;
+      font-weight: normal;
+      font-size: 0.82em;
+      color: var(--muted);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody td { padding: 8px 10px; vertical-align: middle; }
+    .pkmn-cell { display: flex; align-items: center; gap: 10px; }
+    .pkmn-cell img { width: 36px; height: 36px; image-rendering: pixelated; }
+    .code-cell { font-family: monospace; font-size: 1em; font-weight: bold; }
+
+    /* Footer */
+    footer { font-size: 0.75em; color: var(--muted); margin-top: 24px; line-height: 1.5; }
+
+    /* Loading */
+    #loading { text-align: center; padding: 60px; color: var(--muted); font-size: 1.1em; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading Pokédex data…</div>
+
+  <div id="app" class="hidden">
+    <h1>Pokédex Compatibility Chart</h1>
+    <p>
+      Add a Pokémon to your party and game icons will highlight showing which games' Pokédex are compatible with your team!<br>
+      Search by typing any part of the name — regional forms, megas, and variants are all included.
+      For example, type <code>galar</code> to see all Galarian forms, or <code>mega</code> for all Mega Evolutions.
+    </p>
+
+    <div class="search-row">
+      <input id="search-input" type="text" placeholder="Search Pokémon…" autocomplete="off" spellcheck="false" />
+      <button id="add-btn">Add Pokémon</button>
+      <div id="dropdown" class="hidden"></div>
+    </div>
+
+    <div id="party">
+      <p style="color:var(--muted)">Add a Pokémon to see game compatibility</p>
+    </div>
+
+    <div class="controls-row">
+      <label class="toggle-label">
+        <input type="checkbox" id="large-icons"> Large icons
+      </label>
+    </div>
+
+    <div id="game-icons"></div>
+
+    <div id="legend" class="hidden">
+      <span><span style="color:#4caf50">●</span> Catchable in-game</span>
+      <span><span style="color:#ffc107">●</span> Conditional (trade-evolve, dual-slot, etc.)</span>
+      <span><span style="color:#f44336">●</span> Event / limited service / Transfer only</span>
+    </div>
+
+    <div id="game-select-row" class="hidden">
+      <p style="margin-bottom:8px;">Select a game:</p>
+      <select id="game-select">
+        <option value="">— select a game —</option>
+      </select>
+    </div>
+
+    <div id="detail-table" class="hidden"></div>
+
+    <footer>
+      © 2026 — All Pokémon names, characters, and related media are the intellectual property of Nintendo, Game Freak,
+      and The Pokémon Company. This site is an unofficial fan tool and is not affiliated with or endorsed by any of the above.
+    </footer>
+  </div>
+
+  <script>
+    // ── Constants ─────────────────────────────────────────────────────────────
+    const RELEASE_ORDER = [
+      'red','blue','yellow',
+      'gold','silver','crystal',
+      'ruby','sapphire','emerald','firered','leafgreen',
+      'diamond','pearl','platinum','heartgold','soulsilver',
+      'black','white','black-2','white-2',
+      'x','y','omega-ruby','alpha-sapphire',
+      'sun','moon','ultra-sun','ultra-moon',
+      'sword','shield','lets-go-pikachu','lets-go-eevee',
+      'brilliant-diamond','shining-pearl','legends-arceus',
+      'scarlet','violet','legends-za'
+    ];
+
+    const ABV_MAP = {
+      'black-2':'bl2','white-2':'wh2','ultra-moon':'umo','ultra-sun':'usu',
+      'brilliant-diamond':'bdi','shining-pearl':'spe','lets-go-pikachu':'pik',
+      'lets-go-eevee':'eev','omega-ruby':'ome','alpha-sapphire':'alp',
+      'legends-arceus':'arc','legends-za':'lza'
+    };
+
+    const NICE_NAMES = {
+      'firered':'FireRed','leafgreen':'LeafGreen','heartgold':'HeartGold',
+      'soulsilver':'SoulSilver','black-2':'Black 2','white-2':'White 2',
+      'omega-ruby':'Omega Ruby','alpha-sapphire':'Alpha Sapphire',
+      'ultra-sun':'Ultra Sun','ultra-moon':'Ultra Moon',
+      'lets-go-pikachu':"Let's Go, Pikachu!",'lets-go-eevee':"Let's Go, Eevee!",
+      'brilliant-diamond':'Brilliant Diamond','shining-pearl':'Shining Pearl',
+      'legends-arceus':'Legends: Arceus','legends-za':'Legends: Z-A'
+    };
+
+    const TIER_COLORS = { 1:'#4caf50', 2:'#ffc107', 3:'#f44336', 4:'#f44336' };
+    const TIER_LABELS = {
+      1:'Catchable in-game',
+      2:'Conditional (trade-evolve, dual-slot, etc.)',
+      3:'Event / limited service',
+      4:'Transfer / trade only'
+    };
+
+    const TOKEN_TIER = {
+      'B':1,'C':1,'D':1,'E':1,'R':1,'S':1,'CD':1,'DA':1,
+      'CC':2,'DS':2,'ET':2,'FS':2,'TE':2,
+      'DW':3,'DR':3,'EV':3,'Ev':3,'PW':3,
+      'T':4
+    };
+    const ORDERED_TOKENS = Object.keys(TOKEN_TIER).sort((a,b) => b.length - a.length);
+
+    // Ported from app.py — maps display names to DB slugs for form variants
+    const FORMS = {
+      'mr mime':['mr-mime'],'mr. mime':['mr-mime'],
+      'shaymin':['shaymin-land','shaymin-sky'],
+      'basculin':['basculin-red-striped','basculin-blue-striped','basculin-white-striped'],
+      'basculegion':['basculegion-male','basculegion-female'],
+      'tornadus':['tornadus-incarnate','tornadus-therian'],
+      'thundurus':['thundurus-incarnate','thundurus-therian'],
+      'landorus':['landorus-incarnate','landorus-therian'],
+      'enamorus':['enamorus-incarnate','enamorus-therian'],
+      'giratina':['giratina-altered','giratina-origin']
+    };
+
+    // ── State ─────────────────────────────────────────────────────────────────
+    let db = null;
+    let allGames = [];       // [{name, abv, nice}] in release order
+    let party = [];          // [db-slug, ...]
+    let selectedGame = null; // game name currently shown in detail table
+    let searchResults = [];
+    let dropdownIdx = -1;
+    let selectedSearchName = null;
+
+    // ── Core logic (ported from app.py) ───────────────────────────────────────
+    function availabilityTier(code) {
+      if (!code) return null;
+      code = code.replace(/\*/g, '').trim();
+      if (!code) return null;
+      const tiers = [];
+      let i = 0;
+      while (i < code.length) {
+        let matched = false;
+        for (const t of ORDERED_TOKENS) {
+          if (code.slice(i, i + t.length) === t) {
+            tiers.push(TOKEN_TIER[t]);
+            i += t.length;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched) i++;
+      }
+      // If 'E' (evolution) appears alongside other tokens, exclude it — it merely
+      // echoes pre-evolution availability, which is already captured by those tokens.
+      // e.g. 'EvE' → Ev=3 + E=1 → without filter: min=1 (wrong); with filter: 3 (correct).
+      if (tiers.length > 1) {
+        const nonE = tiers.filter(t => t !== TOKEN_TIER['E']);
+        if (nonE.length) tiers.splice(0, tiers.length, ...nonE);
+      }
+      return tiers.length ? Math.min(...tiers) : null;
+    }
+
+    function gameAbv(name) {
+      return ABV_MAP[name] || name.slice(0, 3);
+    }
+
+    function getPokemonId(name) {
+      const r = db.exec('SELECT id FROM pokemon WHERE name=?', [name]);
+      return r[0]?.values[0]?.[0] ?? 0;
+    }
+
+    function getSharedGames(partyNames) {
+      if (!partyNames.length) return new Set();
+      const ids = partyNames.map(n => {
+        const r = db.exec('SELECT id FROM pokemon WHERE name=?', [n]);
+        return r[0]?.values[0]?.[0] ?? null;
+      });
+      if (ids.includes(null)) return new Set();
+      const ph = ids.map(() => '?').join(',');
+      const r = db.exec(
+        `SELECT g.name FROM games g
+         JOIN pokemon_games pg ON g.id = pg.game_id
+         WHERE pg.pokemon_id IN (${ph})
+         GROUP BY g.name
+         HAVING COUNT(DISTINCT pg.pokemon_id) = ?`,
+        [...ids, ids.length]
+      );
+      return new Set(r[0]?.values.map(v => v[0]) ?? []);
+    }
+
+    function getPartyAvailability(partyNames, gameNames) {
+      const result = {};
+      for (const g of gameNames) result[g] = {};
+      if (!partyNames.length || !gameNames.length) return result;
+      const phP = partyNames.map(() => '?').join(',');
+      const phG = gameNames.map(() => '?').join(',');
+      const r = db.exec(
+        `SELECT p.name AS pname, g.name AS gname, pg.availability
+         FROM pokemon_games pg
+         JOIN pokemon p ON p.id = pg.pokemon_id
+         JOIN games g ON g.id = pg.game_id
+         WHERE p.name IN (${phP}) AND g.name IN (${phG})`,
+        [...partyNames, ...gameNames]
+      );
+      if (r[0]) {
+        for (const [pname, gname, avail] of r[0].values) {
+          result[gname][pname] = avail;
+        }
+      }
+      return result;
+    }
+
+    function searchPokemon(query) {
+      if (!query) return [];
+      const r = db.exec(
+        'SELECT id, name FROM pokemon WHERE name LIKE ? ORDER BY id LIMIT 50',
+        [`%${query.toLowerCase()}%`]
+      );
+      return r[0]?.values.map(([id, name]) => ({ id, name })) ?? [];
+    }
+
+    function spriteUrl(id) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    }
+
+    function niceName(slug) {
+      return slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    // ── Party management ──────────────────────────────────────────────────────
+    function addPokemon(name) {
+      const resolved = FORMS[name.toLowerCase()]?.[0] ?? name;
+      if (!party.includes(resolved)) {
+        party = [...party, resolved];
+        render();
+      }
+    }
+
+    function removePokemon(name) {
+      party = party.filter(p => p !== name);
+      render();
+    }
+
+    // ── Rendering ─────────────────────────────────────────────────────────────
+    function render() {
+      const shared = getSharedGames(party);
+      renderParty();
+      renderGameIcons(shared);
+      renderDetailTable(shared);
+      renderGameSelector(shared);
+    }
+
+    function renderParty() {
+      const el = document.getElementById('party');
+      if (!party.length) {
+        el.innerHTML = '<p style="color:var(--muted)">Add a Pokémon to see game compatibility</p>';
+        return;
+      }
+      el.innerHTML = party.map(name => {
+        const id = getPokemonId(name);
+        return `<div class="pokemon-card">
+          <img src="${spriteUrl(id)}" alt="${name}" />
+          <div class="pkmn-name">${niceName(name)}</div>
+          <button class="remove-btn" onclick="removePokemon('${name}')">✕</button>
+        </div>`;
+      }).join('');
+    }
+
+    function renderGameIcons(shared) {
+      const size = document.getElementById('large-icons').checked ? 100 : 50;
+      const sharedAbvs = new Set([...shared].map(g => gameAbv(g)));
+
+      // Compute tier_map: {abv: worst_tier_across_party} for shared games
+      const tierMap = {};
+      if (party.length && shared.size) {
+        const avail = getPartyAvailability(party, [...shared]);
+        for (const game of shared) {
+          const abv = gameAbv(game);
+          const tiers = party
+            .map(p => availabilityTier(avail[game]?.[p] ?? null))
+            .filter(t => t !== null);
+          if (tiers.length) tierMap[abv] = Math.max(...tiers);
+        }
+      }
+
+      const el = document.getElementById('game-icons');
+      el.innerHTML = allGames.map(({ name, abv, nice }) => {
+        const isShared = sharedAbvs.has(abv);
+        let style = `height:${size}px;width:${size}px;object-fit:contain;cursor:pointer;`;
+        if (party.length && !isShared) {
+          style += 'filter:brightness(0.3);';
+        } else {
+          const color = TIER_COLORS[tierMap[abv]];
+          if (color) style += `box-shadow:0 0 10px 4px ${color};border-radius:6px;`;
+        }
+        return `<img src="public/${abv}.png" style="${style}" title="${nice}"
+          onclick="selectGame('${name}')" alt="${nice}" />`;
+      }).join('');
+
+      document.getElementById('legend').classList.toggle('hidden', !party.length);
+    }
+
+    function renderGameSelector(shared) {
+      const row = document.getElementById('game-select-row');
+      const sel = document.getElementById('game-select');
+      if (!party.length || !shared.size) { row.classList.add('hidden'); return; }
+      row.classList.remove('hidden');
+      const options = allGames.filter(g => shared.has(g.name));
+      sel.innerHTML = '<option value="">— select a game —</option>' +
+        options.map(g =>
+          `<option value="${g.name}"${selectedGame === g.name ? ' selected' : ''}>${g.nice}</option>`
+        ).join('');
+    }
+
+    function renderDetailTable(shared) {
+      const el = document.getElementById('detail-table');
+      if (!selectedGame || !party.length || !shared.has(selectedGame)) {
+        if (selectedGame && !shared.has(selectedGame)) selectedGame = null;
+        el.classList.add('hidden');
+        return;
+      }
+      const avail = getPartyAvailability(party, [selectedGame])[selectedGame] ?? {};
+      const abv = gameAbv(selectedGame);
+      const nice = NICE_NAMES[selectedGame] || niceName(selectedGame);
+
+      const rows = party.map(p => {
+        const code = avail[p] ?? null;
+        const tier = availabilityTier(code);
+        const color = TIER_COLORS[tier] ?? '#888';
+        const label = TIER_LABELS[tier] ?? '— no data';
+        const id = getPokemonId(p);
+        return `<tr>
+          <td><div class="pkmn-cell">
+            <img src="${spriteUrl(id)}" alt="${p}" />
+            <span>${niceName(p)}</span>
+          </div></td>
+          <td class="code-cell">${code ?? '—'}</td>
+          <td style="color:${color}">${label}</td>
+        </tr>`;
+      }).join('');
+
+      el.innerHTML = `
+        <div class="detail-header">
+          <img src="public/${abv}.png" alt="${nice}" />
+          <span>${nice}</span>
+        </div>
+        <table>
+          <thead><tr>
+            <th>Pokémon</th><th>Code</th><th>Availability</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      el.classList.remove('hidden');
+    }
+
+    function selectGame(name) {
+      selectedGame = name;
+      const shared = getSharedGames(party);
+      renderDetailTable(shared);
+      renderGameSelector(shared);
+    }
+
+    // ── Search UI ─────────────────────────────────────────────────────────────
+    const searchInput = document.getElementById('search-input');
+    const dropdown = document.getElementById('dropdown');
+
+    let debounceTimer;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      selectedSearchName = null;
+      debounceTimer = setTimeout(() => {
+        searchResults = searchPokemon(searchInput.value.trim());
+        dropdownIdx = -1;
+        renderDropdown();
+      }, 200);
+    });
+
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown') {
+        dropdownIdx = Math.min(dropdownIdx + 1, searchResults.length - 1);
+        renderDropdown();
+        e.preventDefault();
+      } else if (e.key === 'ArrowUp') {
+        dropdownIdx = Math.max(dropdownIdx - 1, 0);
+        renderDropdown();
+        e.preventDefault();
+      } else if (e.key === 'Enter') {
+        if (dropdownIdx >= 0 && searchResults[dropdownIdx]) {
+          selectSearchResult(searchResults[dropdownIdx].name);
+        } else if (selectedSearchName) {
+          addPokemon(selectedSearchName);
+          searchInput.value = '';
+          selectedSearchName = null;
+        } else if (searchResults.length === 1) {
+          addPokemon(searchResults[0].name);
+          searchInput.value = '';
+          searchResults = [];
+        }
+        closeDropdown();
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-row')) closeDropdown();
+    });
+
+    document.getElementById('add-btn').addEventListener('click', () => {
+      if (selectedSearchName) {
+        addPokemon(selectedSearchName);
+        searchInput.value = '';
+        selectedSearchName = null;
+      } else if (searchResults.length === 1) {
+        addPokemon(searchResults[0].name);
+        searchInput.value = '';
+        searchResults = [];
+      }
+      closeDropdown();
+    });
+
+    document.getElementById('game-select').addEventListener('change', e => {
+      selectedGame = e.target.value || null;
+      const shared = getSharedGames(party);
+      renderDetailTable(shared);
+    });
+
+    document.getElementById('large-icons').addEventListener('change', () => {
+      renderGameIcons(getSharedGames(party));
+    });
+
+    function renderDropdown() {
+      if (!searchResults.length) { closeDropdown(); return; }
+      dropdown.innerHTML = searchResults.map((p, i) =>
+        `<div class="dropdown-item${i === dropdownIdx ? ' active' : ''}"
+          onmousedown="selectSearchResult('${p.name}')">${niceName(p.name)}</div>`
+      ).join('');
+      dropdown.classList.remove('hidden');
+    }
+
+    function selectSearchResult(name) {
+      selectedSearchName = name;
+      searchInput.value = niceName(name);
+      closeDropdown();
+    }
+
+    function closeDropdown() {
+      dropdown.classList.add('hidden');
+      dropdownIdx = -1;
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    (async () => {
+      try {
+        const SQL = await initSqlJs({
+          locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/${f}`
+        });
+        const buf = await fetch('pokedex.db').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status} fetching pokedex.db`);
+          return r.arrayBuffer();
+        });
+        db = new SQL.Database(new Uint8Array(buf));
+
+        // Build allGames in hardcoded release order, filtered to what's in the DB
+        const gamesInDb = new Set(
+          db.exec('SELECT name FROM games')[0]?.values.map(v => v[0]) ?? []
+        );
+        allGames = RELEASE_ORDER
+          .filter(g => gamesInDb.has(g))
+          .map(g => ({
+            name: g,
+            abv: ABV_MAP[g] || g.slice(0, 3),
+            nice: NICE_NAMES[g] || niceName(g)
+          }));
+
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        render();
+      } catch (err) {
+        document.getElementById('loading').textContent = `Failed to load: ${err.message}`;
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>

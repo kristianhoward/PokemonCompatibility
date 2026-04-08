@@ -4,5 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
+    "beautifulsoup4>=4.12",
     "marimo>=0.22.0",
+    "pytest>=9.0.2",
+    "requests>=2.32",
 ]
